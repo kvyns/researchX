@@ -2,7 +2,7 @@ const express = require("express");
 const UCRequest = require("../Models/UCRequest");
 const UcRecurring = require("../Models/UcRecurring");
 const UcNonRecurring = require("../Models/UcNonrecurring");
-const { fetchInstitute } = require("../Middlewares/fetchInstitute");
+const { fetchInstitute } = require("../MiddleWares/fetchInstitute");
 const router = express.Router();
 
 // Submit UC (PI sends for approval)

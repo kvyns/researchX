@@ -1,8 +1,8 @@
 const express = require("express");
 const SE = require("../Models/se/SE");
-const { fetchInstitute } = require("../Middlewares/fetchInstitute");
+const { fetchInstitute } = require("../MiddleWares/fetchInstitute");
 const router = express.Router();
-const { fetchAdmin } = require("../Middlewares/fetchAdmin.js");
+const { fetchAdmin } = require("../MiddleWares/fetchAdmin.js");
 
 
 // // Submit SE (PI sends for approval)

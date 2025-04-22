@@ -1,5 +1,5 @@
 const express = require("express");
-const { fetchUser } = require("../Middlewares/fetchUser");
+const { fetchUser } = require("../MiddleWares/fetchUser");
 const GeneralInfo = require("../Models/General_Info");
 const ResearchDetails = require("../Models/researchDetails");
 const User = require("../Models/user");
