@@ -14,6 +14,6 @@ const SalarySchema = new mongoose.Schema({
   }],
 });
 
-const SalaryBreakUp = mongoose.model("SalaryBreakUp", SalarySchema);
+const salaryBreakUp = mongoose.model("salaryBreakUp", SalarySchema);
 
-module.exports = SalaryBreakUp;
+module.exports = salaryBreakUp;

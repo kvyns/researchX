@@ -20,7 +20,7 @@ const QuotationSchema = new mongoose.Schema({
   },
   salaryBreakUpId:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'SalaryBreakUp',
+    ref: 'salaryBreakUp',
     required: true,
   },
   status: {

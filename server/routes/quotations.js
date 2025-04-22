@@ -4,7 +4,7 @@ const multer = require('multer');
 const { fetchUser } = require('../MiddleWares/fetchUser');
 const { fetchAdmin } = require('../MiddleWares/fetchAdmin');
 const Equipment = require('../Models/Quotations/Equipment');
-const SalaryBreakUp = require('../Models/Quotations/SalaryBreakUp');
+const salaryBreakUp = require('../Models/Quotations/salaryBreakUp');
 const Quotation = require('../Models/Quotations/quotation');
 const Project = require('../Models/Project');
 const Scheme = require("../Models/Scheme");
@@ -100,7 +100,7 @@ router.post('/submit-quotation/:id', fetchUser, async (req, res) => {
           }))
         };
       });
-      const salaryBreakup = new SalaryBreakUp({
+      const salaryBreakup = new salaryBreakUp({
         projectId: req.params.id,
         salary: mappedSalaryRows
       });
@@ -117,7 +117,7 @@ router.post('/submit-quotation/:id', fetchUser, async (req, res) => {
     await quotation.save();
 
     if (quotation) {
-      await SalaryBreakUp.findByIdAndUpdate(salaryBreakUpId, {
+      await salaryBreakUp.findByIdAndUpdate(salaryBreakUpId, {
         $set: { QuotationId: quotation._id }
       }, { new: true, runValidators: true });
       await Equipment.findByIdAndUpdate(equipmentsId, {
@@ -185,7 +185,7 @@ router.get('/admin/get-quotation/:id', fetchAdmin, async (req, res) => {
       return res.status(400).json({ success: false, msg: "Quotation not Found!!" });
     }
     const equipments = await Equipment.findById(quotation?.equipmentsId);
-    const salary = await SalaryBreakUp.findById(quotation?.salaryBreakUpId);
+    const salary = await salaryBreakUp.findById(quotation?.salaryBreakUpId);
     return res.status(200).json({ success: true, quotation,equipments,salary, msg: "Quotation fetched Successfully!!" });
   } catch (e) {
     console.error(e.message);
@@ -258,7 +258,7 @@ router.get('/pi/get-quotation/:id', fetchUser, async (req, res) => {
       return res.status(400).json({ success: false, msg: "Quotation not Found!!" });
     }
     const equipments = await Equipment.findById(quotation?.equipmentsId);
-    const salary = await SalaryBreakUp.findById(quotation?.salaryBreakUpId);
+    const salary = await salaryBreakUp.findById(quotation?.salaryBreakUpId);
     return res.status(200).json({ success: true, quotation,equipments,salary, msg: "Quotation fetched Successfully!!" });
   } catch (e) {
     console.error(e.message);
@@ -321,7 +321,7 @@ router.put('/pi/edit-quotation/:id', fetchUser, async (req, res) => {
       { new: true }
     );
 
-    const updatedSalary = await SalaryBreakUp.findByIdAndUpdate(
+    const updatedSalary = await salaryBreakUp.findByIdAndUpdate(
       existingQuotation.salaryBreakUpId,
       salaryData,
       { new: true }
@@ -404,7 +404,7 @@ router.get('/institute/get-quotation/:id', fetchInstitute, async (req, res) => {
       return res.status(400).json({ success: false, msg: "Quotation not Found!!" });
     }
     const equipments = await Equipment.findById(quotation?.equipmentsId);
-    const salary = await SalaryBreakUp.findById(quotation?.salaryBreakUpId);
+    const salary = await salaryBreakUp.findById(quotation?.salaryBreakUpId);
     return res.status(200).json({ success: true, quotation,equipments,salary, msg: "Quotation fetched Successfully!!" });
   } catch (e) {
     console.error(e.message);
